@@ -1,20 +1,15 @@
 require 'faker'
 
-harini_info = { first_name: "First", last_name: "Li", email: "lifei@gmail.com", password_hash: "xxx", username: "lifei"}
-harini = User.new(harini_info)
-harini.phone_number = "+14084555868"
-harini.password = harini.password_hash
-harini.save!
+fei_info = { first_name: "First", last_name: "Li", email: "lifei@gmail.com", password: "xxx", username: "lifei"}
+fei = User.new(fei_info)
+fei.phone_number = "+14084555868"
+fei.save!
 
 4.times do
-  person = { first_name: Faker::Name.first_name, last_name: Faker::Name.last_name }
+  person = { first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, phone_number: Faker::PhoneNumber.cell_phone, password: "xxx" }
   person[:email] = Faker::Internet.safe_email("#{person[:first_name]}.#{person[:last_name]}")
-  person[:phone_number] = Faker::PhoneNumber.cell_phone
-  person[:password_hash] = "xxx"
   person[:username] = "#{person[:first_name]}#{person[:last_name]}".downcase
-
   contact = User.new(person)
-  contact.password = contact.password_hash
   contact.save!
 end
 
