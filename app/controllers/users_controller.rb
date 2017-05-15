@@ -29,11 +29,11 @@ class UsersController < ApplicationController
       flash[:notice] = "Update successful"
       redirect_to @user, status: 302
     else
-      render 'edit'
+      render :edit
     end
   end
 
-  def destroy
+  def delete
     User.find(session[:id]).destroy
     logout
     flash[:notice] = "Account removed"
